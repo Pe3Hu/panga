@@ -22,8 +22,8 @@ func init_num() -> void:
 	num.size.stein.r = num.size.stein.R*sqrt(3)/2
 	
 	num.size.berggipfel = {}
-	num.size.berggipfel.cols = 3
-	num.size.berggipfel.rows = 3
+	num.size.berggipfel.cols = 6
+	num.size.berggipfel.rows = 6
 
 
 func init_dict() -> void:
@@ -72,6 +72,8 @@ func init_dict() -> void:
 	]
 	
 	init_corner()
+	init_hexagex()
+	
 
 
 func init_corner() -> void:
@@ -98,6 +100,17 @@ func init_corner() -> void:
 				
 				var vertex = Vector2(1,0).rotated(angle)
 				dict.corner.vector[corners_][order_][_i] = vertex
+
+
+func init_hexagex() -> void:
+	dict.hexagex = {}
+	var path = "res://asset/json/hexagex_data.json"
+	var dict_ = load_data(path)
+	
+	for key in dict_.keys():
+		dict.hexagex[key] = dict_[key]
+	
+	print(dict.hexagex)
 
 
 func init_title() -> void:
@@ -206,8 +219,8 @@ func split_two_point(points_: Array, delta_: float):
 
 func save(path_: String, data_: String):
 	var path = path_+".json"
-	var file = FileAccess.open(path,FileAccess.WRITE)
-	file.save(data_)
+	var file = FileAccess.open(path, FileAccess.WRITE)
+	file.store_string(data_)
 	file.close()
 
 

@@ -3,6 +3,7 @@ extends Node
 
 #Горный пик berggipfel
 class Berggipfel:
+	var num = {}
 	var arr = {}
 	var obj = {}
 	var scene = {}
@@ -10,8 +11,11 @@ class Berggipfel:
 
 	func _init(input_):
 		obj.felssturz = input_.felssturz
+		num.felsen = 0
 		init_scene()
 		init_steins()
+		#init_felsen()
+		#draw_felsen()
 
 
 	func init_scene() -> void:
@@ -63,6 +67,225 @@ class Berggipfel:
 			arounds.append(next_ring)
 		
 		return arounds
+
+
+	func init_felsen() -> void:
+		arr.felsen = []
+		var hexagexs = []
+		var hexagex = [0,1,2,3,4,5]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,3,4,10]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,3,4,9]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,3,4,8]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,3,9,10]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,3,9,16]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,3,9,15]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,3,8,9]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,3,8,15]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,3,8,14]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,3,7,8]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,3,7,14]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,3,7,9]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,3,6,9]
+		hexagexs.append(hexagex)
+		hexagex = [1,2,3,4,6,10]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,3,6,8]
+		hexagexs.append(hexagex)
+		hexagex = [4,6,7,8,9,16]
+		hexagexs.append(hexagex)
+		hexagex = [3,6,7,8,9,16]
+		hexagexs.append(hexagex)
+		hexagex = [2,6,7,8,9,16]
+		hexagexs.append(hexagex)
+		hexagex = [1,6,7,8,9,16]
+		hexagexs.append(hexagex)
+		hexagex = [0,6,7,8,9,16]
+		hexagexs.append(hexagex)
+		hexagex = [3,6,7,8,9,15]
+		hexagexs.append(hexagex)
+		hexagex = [2,6,7,8,9,15]
+		hexagexs.append(hexagex)
+		hexagex = [1,6,7,8,9,15]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,8,15,16]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,8,9,10]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,8,15,20]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,8,14,19]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,8,9,4]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,8,9,16]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,8,14,20]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,8,14,13]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,7,9,14,15]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,7,14,15,21]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,7,14,19,26]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,7,14,18,19]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,7,8,15,16]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,7,8,15,20]
+		hexagexs.append(hexagex)
+		hexagex = [3,6,7,9,14,15]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,3,4,7,8]
+		hexagexs.append(hexagex)
+		hexagex = [1,2,6,8,13,14]
+		hexagexs.append(hexagex)
+		hexagex = [2,6,7,8,9,14]
+		hexagexs.append(hexagex)
+		hexagex = [0,2,6,7,12,14]
+		hexagexs.append(hexagex)
+		hexagex = [2,6,7,14,20,21]
+		hexagexs.append(hexagex)
+		hexagex = [2,6,7,9,14,15]
+		hexagexs.append(hexagex)
+		hexagex = [2,6,7,14,15,16]
+		hexagexs.append(hexagex)
+		hexagex = [2,6,7,14,15,21]
+		hexagexs.append(hexagex)
+		hexagex = [2,7,12,13,19,26]
+		hexagexs.append(hexagex)
+		hexagex = [2,3,6,7,14,20]
+		hexagexs.append(hexagex)
+		hexagex = [2,3,6,7,14,15]
+		hexagexs.append(hexagex)
+		hexagex = [2,3,6,7,14,19]
+		hexagexs.append(hexagex)
+		hexagex = [1,7,12,13,19,25]
+		hexagexs.append(hexagex)
+		hexagex = [2,7,12,13,19,25]
+		hexagexs.append(hexagex)
+		hexagex = [1,6,7,8,14,19]
+		hexagexs.append(hexagex)
+		hexagex = [1,6,7,8,13,14]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,6,7,13]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,6,7,14]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,6,8,13]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,6,8,14]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,7,8,9]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,6,7,8]
+		hexagexs.append(hexagex)
+		hexagex = [1,2,3,6,8,9]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,7,8,15]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,7,8,14]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,7,8,13]
+		hexagexs.append(hexagex)
+		hexagex = [3,6,7,8,14,15]
+		hexagexs.append(hexagex)
+		hexagex = [0,2,3,6,7,9]
+		hexagexs.append(hexagex)
+		hexagex = [1,6,7,8,14,15]
+		hexagexs.append(hexagex)
+		hexagex = [0,6,7,8,14,15]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,6,8,9]
+		hexagexs.append(hexagex)
+		hexagex = [3,4,6,7,8,13]
+		hexagexs.append(hexagex)
+		hexagex = [2,8,12,13,14,18]
+		hexagexs.append(hexagex)
+		hexagex = [3,6,7,8,13,15]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,6,8,15]
+		hexagexs.append(hexagex)
+		hexagex = [1,6,7,8,15,21]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,2,6,8,12]
+		hexagexs.append(hexagex)
+		hexagex = [3,6,7,8,13,18]
+		hexagexs.append(hexagex)
+		hexagex = [3,6,7,8,13,19]
+		hexagexs.append(hexagex)
+		hexagex = [3,6,7,8,14,20]
+		hexagexs.append(hexagex)
+		hexagex = [0,1,7,8,14,19]
+		hexagexs.append(hexagex)
+		hexagex = [1,6,7,8,13,15]
+		hexagexs.append(hexagex)
+		hexagex = [1,6,13,14,19,25]
+		hexagexs.append(hexagex)
+		
+		for hexagex_ in hexagexs:
+			var input = {}
+			input.indexs = hexagex_
+			input.berggipfel = self
+			var felsen = Classes_1.Felsen.new(input)
+			arr.felsen.append(felsen)
+		
+		var path = "res://asset/json/hexagex_data"
+		var str_ = ""
+		var datas = {}
+		
+		for _j in hexagexs.size():
+			var hexagex_ = hexagexs[_j]
+			var data = {}
+			
+			for _i in hexagex_.size():
+				var index = hexagex_[_i]
+				data[_i] = index
+			
+			datas[_j] = hexagex_
+		
+		print(datas)
+		
+		var jstr = JSON.stringify(datas)
+		print(jstr)
+		Global.save(path, jstr)
+
+
+	func draw_felsen() -> void:
+		num.felsen = (num.felsen+1+arr.felsen.size())%arr.felsen.size()
+		var felsen = arr.felsen[num.felsen]
+		
+		for steins in arr.stein:
+			for stein in steins:
+				stein.flag.on_screen = false
+				stein.scene.myself.update_color()
+		
+		for index in felsen.arr.index:
+			var stein = get_stein_by_index(index)
+			stein.flag.on_screen = true
+			stein.scene.myself.update_color()
+
+
+	func get_stein_by_index(index_: int) -> Classes_1.Stein:
+		var x = index_%Global.num.size.berggipfel.cols 
+		var y = index_/Global.num.size.berggipfel.cols 
+		var stein = arr.stein[y][x]
+		
+		return stein
 
 
 	func check_grid_on_berggipfel(grid_) -> bool:

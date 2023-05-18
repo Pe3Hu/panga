@@ -15,11 +15,20 @@ func set_parent(parent_) -> void:
 	var offset_ = Vector2(Global.num.size.stein.r,Global.num.size.stein.R)
 	position = Vector2(x,y)+offset_
 	set_vertexs()
-	
+	update_color()
+	var index = Global.num.size.berggipfel.cols*parent.vec.grid.y+parent.vec.grid.x
+	$Label.text = str(index)
+
+
+func update_color() -> void:
 	var max_h = 360.0
 	var h = float(parent.vec.grid.y*Global.num.size.berggipfel.rows+parent.vec.grid.x)/(Global.num.size.berggipfel.rows*Global.num.size.berggipfel.cols)
-	var s = 1
+	var s = 0.25
 	var v = 1
+	
+	if parent.flag.on_screen:
+		s = 1
+	
 	var color_ = Color.from_hsv(h,s,v)
 	set_color(color_)
 

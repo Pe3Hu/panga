@@ -1,3 +1,4 @@
+Label
 Node2D
 ColorRect
 VBoxContainer
@@ -6,7 +7,6 @@ MarginContainer
 HBoxContainer
 Control
 Timer
-Label
 Button
 ProgressBar
 TextureProgressBar
