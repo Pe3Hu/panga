@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dk8y6l8dhdcp0"]
+
+[node name="Felsen" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0

@@ -1,0 +1,34 @@
+2a60927148abd1d33b818b535e306557
+::res://::1684406101
+icon.png::CompressedTexture2D::2432420761471245026::1676094585::1682073341::1::::<><>::
+icon.svg::CompressedTexture2D::9162371498834860976::1679058444::1682073341::1::::<><>::
+README.md::TextFile::-1::1683505161::0::1::::<><>::
+::res://asset/::1684406073
+default_env.tres::Environment::-1::1677963175::0::1::::<><>::
+::res://asset/font/::1684410378
+2TECH2.TTF::FontFile::381374209107885041::1682126232::1684410404::1::::<><>::
+ALBA____.TTF::FontFile::4234611237747425266::1673874020::1682073340::1::::<><>::
+basic_label_setting.tres::LabelSettings::8721648622212071911::1682973059::0::1::::<><>::uid://dk3ytja0i6utv
+Marlboro.ttf::FontFile::1499582478604000857::1673874020::1682073340::1::::<><>::
+metal lord ot.otf::FontFile::3619300847126422558::1682126186::1682151714::1::::<><>::
+neuropolitical rg.otf::FontFile::2325526762121942984::1336566082::1682151714::1::::<><>::
+rimouski sb.otf::FontFile::2683584631797712805::1657615528::1682151714::1::::<><>::
+::res://asset/json/::1683808593
+::res://asset/png/::1684410263
+::res://asset/tileset/::1683808601
+::res://scene/::1684407173
+::res://scene/0/::1684410226
+berggipfel.tscn::PackedScene::1121690717196129534::1684410226::0::1::::<><>::res://scene/0/berggipfel.gd
+felssturz.tscn::PackedScene::4038576559406776191::1684410226::0::1::::<><>::
+berggipfel.gd::GDScript::-1::1684410226::0::1::::<>MarginContainer<>::
+::res://scene/1/::1684410235
+felsen.tscn::PackedScene::7930788149662225223::1684410226::0::1::::<><>::
+stein.gd::GDScript::-1::1684410165::0::1::::<>Polygon2D<>::
+stein.tscn::PackedScene::6975642567601522447::1684410235::0::1::::<><>::res://scene/1/stein.gd
+::res://scene/game/::1684410226
+Game.gd::GDScript::-1::1684409046::0::1::::<>Node<>::
+Game.tscn::PackedScene::8246655032211948728::1684410226::0::1::::<><>::res://scene/game/Game.gd
+::res://script/::1684409833
+Classes_0.gd::GDScript::-1::1684409833::0::1::::<>Node<>::
+Classes_1.gd::GDScript::-1::1684409165::0::1::::<>Node<>::
+Global.gd::GDScript::-1::1684409507::0::1::::<>Node<>::
