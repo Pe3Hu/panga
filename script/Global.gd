@@ -15,6 +15,8 @@ var stats = {}
 
 func init_num() -> void:
 	num.index = {}
+	num.index.stein = 0
+	num.index.felsen = 0
 	
 	num.size = {}
 	num.size.stein = {}
@@ -22,8 +24,9 @@ func init_num() -> void:
 	num.size.stein.r = num.size.stein.R*sqrt(3)/2
 	
 	num.size.berggipfel = {}
-	num.size.berggipfel.cols = 6
-	num.size.berggipfel.rows = 6
+	num.size.berggipfel.n = 6
+	num.size.berggipfel.col = num.size.berggipfel.n-1#num.size.berggipfel.n*2-1
+	num.size.berggipfel.row = num.size.berggipfel.n-1#num.size.berggipfel.n*2-1
 
 
 func init_dict() -> void:
@@ -54,18 +57,18 @@ func init_dict() -> void:
 	]
 	dict.neighbor.hex = [
 		[
-			Vector2( 1,-1), 
+			Vector2( 0,-1),
 			Vector2( 1, 0), 
 			Vector2( 0, 1), 
+			Vector2(-1, 1), 
 			Vector2(-1, 0), 
 			Vector2(-1,-1),
-			Vector2( 0,-1)
 		],
 		[
+			Vector2( 1,-1),
 			Vector2( 1, 0),
 			Vector2( 1, 1),
 			Vector2( 0, 1),
-			Vector2(-1, 1),
 			Vector2(-1, 0),
 			Vector2( 0,-1)
 		]
@@ -104,13 +107,11 @@ func init_corner() -> void:
 
 func init_hexagex() -> void:
 	dict.hexagex = {}
-	var path = "res://asset/json/hexagex_data.json"
+	var path = "res://asset/json/hexagex_6_data.json"
 	var dict_ = load_data(path)
 	
 	for key in dict_.keys():
 		dict.hexagex[key] = dict_[key]
-	
-	print(dict.hexagex)
 
 
 func init_title() -> void:

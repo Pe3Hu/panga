@@ -10,6 +10,6 @@ func set_parent(parent_) -> void:
 
 
 func update_size() -> void:
-	var x = (Global.num.size.berggipfel.cols+0.5)*Global.num.size.stein.r*2
-	var y = (Global.num.size.berggipfel.rows+1.0/3)*Global.num.size.stein.R*1.5
+	var x = Global.num.size.berggipfel.col*Global.num.size.stein.r*2
+	var y = (Global.num.size.berggipfel.row+1.0/3)*Global.num.size.stein.R*1.5
 	custom_minimum_size = Vector2(x,y)
