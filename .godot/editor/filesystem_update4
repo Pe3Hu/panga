@@ -8,3 +8,4 @@ res://script/Global.gd
 res://script/Classes_1.gd
 res://scene/1/stein.gd
 res://scene/0/berggipfel.gd
+res://scene/game/Game.gd

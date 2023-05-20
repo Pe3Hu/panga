@@ -9,8 +9,13 @@ func _ready() -> void:
 func _input(event) -> void:
 	if event is InputEventKey:
 		match event.keycode:
-			KEY_SPACE:
+			KEY_A:
 				if event.is_pressed() && !event.is_echo():
+					Global.obj.felssturz.obj.berggipfel.num.felsen -= 1
+					Global.obj.felssturz.obj.berggipfel.draw_felsen()
+			KEY_D:
+				if event.is_pressed() && !event.is_echo():
+					Global.obj.felssturz.obj.berggipfel.num.felsen += 1
 					Global.obj.felssturz.obj.berggipfel.draw_felsen()
 
 
