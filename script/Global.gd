@@ -75,7 +75,7 @@ func init_dict() -> void:
 	]
 	
 	init_corner()
-	init_hexagex()
+	init_pentahex()
 	
 
 
@@ -105,13 +105,13 @@ func init_corner() -> void:
 				dict.corner.vector[corners_][order_][_i] = vertex
 
 
-func init_hexagex() -> void:
-	dict.hexagex = {}
-	var path = "res://asset/json/hexagex_6_data.json"
+func init_pentahex() -> void:
+	dict.pentahex = {}
+	var path = "res://asset/json/pentahex_data.json"
 	var dict_ = load_data(path)
 	
 	for key in dict_.keys():
-		dict.hexagex[key] = dict_[key]
+		dict.pentahex[key] = dict_[key]
 
 
 func init_title() -> void:

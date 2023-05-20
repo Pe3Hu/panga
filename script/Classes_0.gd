@@ -141,55 +141,11 @@ class Berggipfel:
 
 	func init_felsen() -> void:
 		arr.felsen = []
-		var indexs = 22
 		
-		var pentahexs = []
-		var pentahex = [1,6,12,17,23]
-		pentahexs.append(pentahex)
-		pentahex = [1,6,12,17,18]
-		pentahexs.append(pentahex)
-		pentahex = [1,6,12,13,17]
-		pentahexs.append(pentahex)
-		pentahex = [1,6,7,12,17]
-		pentahexs.append(pentahex)
-		pentahex = [1,2,6,12,17]
-		pentahexs.append(pentahex)
-		pentahex = [1,6,12,13,14]
-		pentahexs.append(pentahex)
-		pentahex = [1,6,12,13,18]
-		pentahexs.append(pentahex)
-		pentahex = [1,6,7,12,13]
-		pentahexs.append(pentahex)
-		pentahex = [1,2,7,13,17]
-		pentahexs.append(pentahex)
-		pentahex = [1,2,6,7,12]
-		pentahexs.append(pentahex)
-		pentahex = [1,6,12,13,16]
-		pentahexs.append(pentahex)
-		pentahex = [1,2,5,11,12]
-		pentahexs.append(pentahex)
-		pentahex = [1,3,6,7,12]
-		pentahexs.append(pentahex)
-		pentahex = [1,6,7,8,12]
-		pentahexs.append(pentahex)
-		pentahex = [1,2,6,12,16]
-		pentahexs.append(pentahex)
-		pentahex = [1,5,11,16,21]
-		pentahexs.append(pentahex)
-		pentahex = [1,6,7,11,12]
-		pentahexs.append(pentahex)
-		pentahex = [1,2,6,11,12]
-		pentahexs.append(pentahex)
-		pentahex = [1,6,7,13,17]
-		pentahexs.append(pentahex)
-		pentahex = [1,6,7,11,16]
-		pentahexs.append(pentahex)
-		pentahex = [1,5,11,15,21]
-		pentahexs.append(pentahex)
 		
-		for pentahex_ in pentahexs:
+		for key in Global.dict.pentahex:
 			var input = {}
-			input.indexs = pentahex_#Global.dict.pentahex[str(indexs_)]
+			input.indexs = Global.dict.pentahex[key]#Global.dict.pentahex[str(indexs_)]
 			input.berggipfel = self
 			var felsen = Classes_1.Felsen.new(input)
 			arr.felsen.append(felsen)
@@ -303,23 +259,6 @@ class Berggipfel:
 			input.berggipfel = self
 			var felsen = Classes_1.Felsen.new(input)
 			arr.felsen.append(felsen)
-		
-		var path = "res://asset/json/pentahex_data"
-		var str_ = ""
-		var datas = {}
-		
-		for _j in dict.pentahex.index.size():
-			var pentahex_ = dict.pentahex.index[_j]
-			var data = {}
-		
-			for _i in pentahex_.size():
-				var index = pentahex_[_i]
-				data[_i] = index
-		
-			datas[_j] = pentahex_
-		
-		var jstr = JSON.stringify(datas)
-		Global.save(path, jstr) 
 
 
 	func flip_indexs(indexs_: Array) -> Array:
