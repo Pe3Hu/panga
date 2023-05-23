@@ -14,20 +14,29 @@ func set_parent(parent_) -> void:
 	
 	var offset_ = Vector2(Global.num.size.stein.r,Global.num.size.stein.R)
 	position = Vector2(x,y)+offset_
-	visible = false
+	visible = parent.flag.on_screen
 	set_vertexs()
 	update_color()
-	var index = Global.num.size.berggipfel.col*parent.vec.grid.y+parent.vec.grid.x
-	$Label.text = str(index)
+	update_label()
 
 
 func update_color() -> void:
 	var max_h = 360.0
-	var h = float(parent.vec.grid.y*Global.num.size.berggipfel.row+parent.vec.grid.x)/(Global.num.size.berggipfel.row*Global.num.size.berggipfel.col)
+	var size = null
+	
+	if parent.obj.berggipfel != null:
+		size = Global.num.size.berggipfel
+	if parent.obj.felssturz != null:
+		size = Global.num.size.felssturz
+	
+	var h = float(parent.vec.grid.y*size.row+parent.vec.grid.x)/(size.row*size.col)
 	var s = 0.25
 	var v = 1
 	
 	if parent.flag.felsen:
+		s = 1
+	
+	if parent.flag.crack:
 		s = 1
 	
 	var color_ = Color.from_hsv(h,s,v)
@@ -46,3 +55,18 @@ func set_vertexs() -> void:
 		vertexs.append(vertex)
 	
 	set_polygon(vertexs)
+
+
+func update_label() -> void:
+	var reserve = null
+	var size = null
+	
+	if parent.obj.berggipfel != null:
+		reserve = parent.obj.berggipfel.num.stein.reserve
+		size = Global.num.size.berggipfel
+	if parent.obj.felssturz != null:
+		reserve = parent.obj.felssturz.num.stein.reserve
+		size = Global.num.size.felssturz
+	
+	var index = size.col*parent.vec.grid.y+parent.vec.grid.x
+	$Label.text = str(index)

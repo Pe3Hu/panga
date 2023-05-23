@@ -1,10 +1,10 @@
-Label
+HBoxContainer
 Node2D
+Label
 ColorRect
 VBoxContainer
 Polygon2D
 MarginContainer
-HBoxContainer
 Control
 Timer
 Button

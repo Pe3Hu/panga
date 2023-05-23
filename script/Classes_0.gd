@@ -11,8 +11,10 @@ class Berggipfel:
 
 
 	func _init(input_):
-		obj.felssturz = input_.felssturz
+		obj.gebirge = input_.gebirge
 		num.felsen = 0
+		num.stein = {}
+		num.stein.reserve = Global.num.index.stein
 		init_scene()
 		init_steins()
 		init_felsen()
@@ -22,7 +24,7 @@ class Berggipfel:
 	func init_scene() -> void:
 		scene.myself = Global.scene.berggipfel.instantiate()
 		scene.myself.set_parent(self)
-		obj.felssturz.scene.myself.get_node("Berggipfel").add_child(scene.myself)
+		obj.gebirge.scene.myself.get_node("HBox").add_child(scene.myself)
 
 
 	func init_steins() -> void:
@@ -35,6 +37,7 @@ class Berggipfel:
 				var input = {}
 				input.grid = Vector2(_j,_i)
 				input.berggipfel = self
+				input.felssturz = null
 				var stein = Classes_1.Stein.new(input)
 				arr.stein[_i].append(stein)
 		
@@ -61,7 +64,7 @@ class Berggipfel:
 				for direction in Global.dict.neighbor.hex[stein.num.parity]:
 					var grid = stein.vec.grid + direction
 					
-					if check_grid_on_berggipfel(grid):
+					if Global.check_array_has_grid(arr.stein, grid):
 						var neighbor = arr.stein[grid.y][grid.x]
 						stein.dict.neighbor[neighbor] = direction
 
@@ -142,10 +145,14 @@ class Berggipfel:
 	func init_felsen() -> void:
 		arr.felsen = []
 		
-		
-		for key in Global.dict.pentahex:
+		for letter in Global.dict.pentahex.keys():
 			var input = {}
-			input.indexs = Global.dict.pentahex[key]#Global.dict.pentahex[str(indexs_)]
+			input.indexs = []
+			
+			for index in Global.dict.pentahex[letter]:
+				input.indexs.append(index+num.stein.reserve)
+			
+			input.letter = letter
 			input.berggipfel = self
 			var felsen = Classes_1.Felsen.new(input)
 			arr.felsen.append(felsen)
@@ -161,7 +168,7 @@ class Berggipfel:
 		dict.pentahex.rotate = {}
 		
 		for felsen in arr.felsen:
-			dict.pentahex.rotate[felsen.num.index] = {}
+			dict.pentahex.rotate[felsen.word.letter] = {}
 			var hashes = []
 			
 			for _i in range(0,6,1):
@@ -177,36 +184,34 @@ class Berggipfel:
 					
 				indexs.sort()
 				
-				var hash = ""
-				
-				for index in indexs:
-					hash += str(index)
-				
-				hash = hash.sha256_text()
+				var hash = indexs.hash()
 				
 				if !hashes.has(hash):
 					hashes.append(hash)
-					dict.pentahex.rotate[felsen.num.index][_i] = indexs
+					dict.pentahex.rotate[felsen.word.letter][_i] = indexs
 
 
 	func flip_felsens() -> void:
 		dict.pentahex.flip = {}
 		
-		for index in dict.pentahex.rotate.keys():
-			dict.pentahex.flip[index] = []
+		for letter in dict.pentahex.rotate.keys():
+			dict.pentahex.flip[letter] = []
 			
-			for _i in dict.pentahex.rotate[index].size():
-				dict.pentahex.flip[index].append(flip_indexs(dict.pentahex.rotate[index][_i]))
+			for _i in dict.pentahex.rotate[letter].size():
+				dict.pentahex.flip[letter].append(flip_indexs(dict.pentahex.rotate[letter][_i]))
 
 
 	func pinch_felsens() -> void:
-		dict.pentahex.index = []
+		dict.pentahex.letter = {}
 		
-		for key in dict.pentahex.rotate.keys():
+		for letter in Global.dict.pentahex.keys():
+			dict.pentahex.letter[letter] = []
+		
+		for letter in dict.pentahex.rotate.keys():
 			var hashes = []
 			
-			for _i in dict.pentahex.rotate[key].size():
-				var indexs = dict.pentahex.rotate[key][_i]
+			for _i in dict.pentahex.rotate[letter].size():
+				var indexs = dict.pentahex.rotate[letter][_i]
 				var pinched = [indexs]
 				
 				while pinched.back().size() != 0:
@@ -218,16 +223,12 @@ class Berggipfel:
 					indexs = pinched.back()
 				
 				indexs.sort()
-				dict.pentahex.index.append(indexs)
-				var hash = ""
-				
-				for index in indexs:
-					hash += str(index)
-				
-				hashes.append(hash.sha256_text())
+				dict.pentahex.letter[letter].append(indexs)
+				var hash = indexs.hash()
+				hashes.append(hash)
 			
-			for _i in dict.pentahex.flip[key].size():
-				var indexs = dict.pentahex.flip[key][_i]
+			for _i in dict.pentahex.flip[letter].size():
+				var indexs = dict.pentahex.flip[letter][_i]
 				var pinched = [indexs]
 				
 				while pinched.back().size() != 0:
@@ -239,26 +240,25 @@ class Berggipfel:
 					indexs = pinched.back()
 				
 				indexs.sort()
-				var hash = ""
-				
-				for index in indexs:
-					hash += str(index)
-				
-				hash = hash.sha256_text()
+				var hash = indexs.hash()
+				hashes.append(hash)
 				
 				if !hashes.has(hash):
-					dict.pentahex.index.append(indexs)
+					dict.pentahex.letter[letter].append(indexs)
 
 
 	func reinit_felsen() -> void:
 		arr.felsen = []
+		Global.num.index.felsen = 0
 		
-		for pentahex_ in dict.pentahex.index:
-			var input = {}
-			input.indexs = pentahex_#Global.dict.pentahex[str(indexs_)]
-			input.berggipfel = self
-			var felsen = Classes_1.Felsen.new(input)
-			arr.felsen.append(felsen)
+		for letter in dict.pentahex.letter.keys():
+			for indexs in dict.pentahex.letter[letter]:
+				var input = {}
+				input.indexs = indexs
+				input.letter = letter
+				input.berggipfel = self
+				var felsen = Classes_1.Felsen.new(input)
+				arr.felsen.append(felsen)
 
 
 	func flip_indexs(indexs_: Array) -> Array:
@@ -288,7 +288,7 @@ class Berggipfel:
 			for direction in directions:
 				var neighbor_grid = stein.vec.grid+Global.dict.neighbor.hex[stein.num.parity][direction]
 				
-				if check_grid_on_screen(neighbor_grid):
+				if Global.check_grid_on_screen(arr.stein, neighbor_grid):
 					var index_ = arr.stein[neighbor_grid.y][neighbor_grid.x].num.index
 					opportunity[direction].append(index_)
 		
@@ -305,6 +305,7 @@ class Berggipfel:
 	func draw_felsen() -> void:
 		num.felsen = (arr.felsen.size()+num.felsen)%arr.felsen.size()
 		var felsen = arr.felsen[num.felsen]
+		obj.gebirge.obj.felssturz.get_available_steins_for_felsen(felsen)
 		
 		for steins in arr.stein:
 			for stein in steins:
@@ -318,42 +319,136 @@ class Berggipfel:
 
 
 	func get_stein_by_index(index_: int) -> Classes_1.Stein:
-		var x = index_%Global.num.size.berggipfel.col
-		var y = index_/Global.num.size.berggipfel.col
+		var index = index_-num.stein.reserve
+		var x = index%Global.num.size.berggipfel.col
+		var y = index/Global.num.size.berggipfel.col
 		var stein = arr.stein[y][x]
 		
 		return stein
 
 
-	func check_grid_on_berggipfel(grid_) -> bool:
-		return grid_.y >= 0 and grid_.x >= 0 and grid_.y < arr.stein.size() and grid_.x < arr.stein[0].size()
-
-
-	func check_grid_on_screen(grid_) -> bool:
-		if check_grid_on_berggipfel(grid_):
-			return arr.stein[grid_.y][grid_.x].flag.on_screen
-		else:
-			return false
-
 
 #Камнепад felssturz
 class Felssturz:
+	var num = {}
+	var arr = {}
+	var obj = {}
+	var scene = {}
+
+
+	func _init(input_):
+		num.stein = {}
+		num.stein.reserve = Global.num.index.stein
+		obj.gebirge = input_.gebirge
+		init_scene()
+		init_steins()
+
+
+	func init_scene() -> void:
+		scene.myself = Global.scene.felssturz.instantiate()
+		scene.myself.set_parent(self)
+		obj.gebirge.scene.myself.get_node("HBox").add_child(scene.myself)
+
+
+	func init_steins() -> void:
+		arr.stein = []
+		
+		for _i in Global.num.size.felssturz.row:
+			arr.stein.append([])
+			
+			for _j in Global.num.size.felssturz.col:
+				var input = {}
+				input.grid = Vector2(_j,_i)
+				input.berggipfel = null
+				input.felssturz = self
+				var stein = Classes_1.Stein.new(input)
+				arr.stein[_i].append(stein)
+		
+		init_stein_neighbors()
+
+
+	func init_stein_neighbors() -> void:
+		for steins in arr.stein:
+			for stein in steins:
+				for direction in Global.dict.neighbor.hex[stein.num.parity]:
+					var grid = stein.vec.grid + direction
+					
+					if Global.check_array_has_grid(arr.stein, grid):
+						var neighbor = arr.stein[grid.y][grid.x]
+						stein.dict.neighbor[neighbor] = direction
+
+
+	func get_available_steins_for_felsen(felsen_: Classes_1.Felsen) -> void:
+		var directions = felsen_.get_directions()
+		var cols = {}
+		arr.crack = []
+		
+		for row in Global.num.size.berggipfel.row:
+			for stein in arr.stein[row]:
+				var flag = true
+				
+				for branch in directions:
+					if flag:
+						var grid = stein.vec.grid
+						
+						for direction in branch:
+							if flag:
+								grid += Global.dict.neighbor.hex[int(grid.y)%2][direction]
+								flag = flag and Global.check_grid_on_screen(arr.stein, grid)
+							else:
+								break
+					else:
+						break
+				
+				if flag:
+					if !cols.keys().has(int(stein.vec.grid.x)):
+						cols[int(stein.vec.grid.x)] = [int(stein.vec.grid.y)]
+					else:
+						cols[int(stein.vec.grid.x)].append(int(stein.vec.grid.y))
+		
+		for x in cols.keys():
+			cols[x].sort()
+			var y = cols[x].front()
+			
+			var stein = arr.stein[y][x]
+			arr.crack.append(stein)
+		
+		for steins in arr.stein:
+			for stein in steins:
+				stein.flag.crack = false
+				stein.scene.myself.update_color()
+		
+		for stein in arr.crack:
+			stein.flag.crack = true
+			stein.scene.myself.update_color()
+
+
+#Горы gebirge
+class Gebirge:
+	var arr = {}
 	var obj = {}
 	var scene = {}
 
 
 	func _init():
 		init_scene()
+		init_felssturz()
 		init_berggipfel()
 
 
 	func init_scene() -> void:
-		scene.myself = Global.scene.felssturz.instantiate()
-		#scene.myself.set_parent(self)
+		scene.myself = Global.scene.gebirge.instantiate()
+		scene.myself.set_parent(self)
 		Global.node.game.get_node("Layer0").add_child(scene.myself)
+
+
+	func init_felssturz() -> void:
+		var input = {}
+		input.gebirge = self
+		obj.felssturz = Classes_0.Felssturz.new(input)
 
 
 	func init_berggipfel() -> void:
 		var input = {}
-		input.felssturz = self
+		input.gebirge = self
 		obj.berggipfel = Classes_0.Berggipfel.new(input)

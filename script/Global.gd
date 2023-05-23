@@ -27,6 +27,10 @@ func init_num() -> void:
 	num.size.berggipfel.n = 6
 	num.size.berggipfel.col = num.size.berggipfel.n-1#num.size.berggipfel.n*2-1
 	num.size.berggipfel.row = num.size.berggipfel.n-1#num.size.berggipfel.n*2-1
+	
+	num.size.felssturz = {}
+	num.size.felssturz.col = 11
+	num.size.felssturz.row = 11
 
 
 func init_dict() -> void:
@@ -171,6 +175,7 @@ func init_node() -> void:
 
 
 func init_scene() -> void:
+	scene.gebirge = load("res://scene/0/gebirge.tscn")
 	scene.felssturz = load("res://scene/0/felssturz.tscn")
 	scene.berggipfel = load("res://scene/0/berggipfel.tscn")
 	scene.felsen = load("res://scene/1/felsen.tscn")
@@ -391,3 +396,14 @@ func factorial(n_: int) -> int:
 		result *= _i
 	
 	return result
+
+
+func check_array_has_grid(array_: Array, grid_: Vector2) -> bool:
+	return grid_.y >= 0 and grid_.x >= 0 and grid_.y < array_.size() and grid_.x < array_[0].size()
+
+
+func check_grid_on_screen(array_: Array, grid_: Vector2) -> bool:
+	if check_array_has_grid(array_, grid_):
+		return array_[grid_.y][grid_.x].flag.on_screen
+	else:
+		return false

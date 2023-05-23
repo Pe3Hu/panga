@@ -4,8 +4,9 @@ res://scene/0/felssturz.tscn
 res://scene/1/felsen.tscn
 res://scene/1/stein.tscn
 res://script/Classes_0.gd
-res://script/Global.gd
 res://script/Classes_1.gd
-res://scene/1/stein.gd
-res://scene/0/berggipfel.gd
+res://script/Global.gd
+res://scene/0/felssturz.gd
+res://scene/0/gebirge.tscn
 res://scene/game/Game.gd
+res://scene/1/stein.gd

@@ -1,5 +1,5 @@
 2a60927148abd1d33b818b535e306557
-::res://::1684601286
+::res://::1684800313
 icon.png::CompressedTexture2D::2432420761471245026::1676094585::1682073341::1::::<><>::
 icon.svg::CompressedTexture2D::9162371498834860976::1679058444::1682073341::1::::<><>::
 README.md::TextFile::-1::1684410542::0::1::::<><>::
@@ -13,23 +13,26 @@ Marlboro.ttf::FontFile::1499582478604000857::1673874020::1682073340::1::::<><>::
 metal lord ot.otf::FontFile::3619300847126422558::1682126186::1682151714::1::::<><>::
 neuropolitical rg.otf::FontFile::2325526762121942984::1336566082::1682151714::1::::<><>::
 rimouski sb.otf::FontFile::2683584631797712805::1657615528::1682151714::1::::<><>::
-::res://asset/json/::1684436300
-hexagex_data.json::JSON::-1::1684437248::0::1::::<><>::
+::res://asset/json/::1684798749
+hexagex_6_data.json::JSON::-1::1684437248::0::1::::<><>::
+pentahex_data.json::JSON::-1::1684798080::0::1::::<><>::
 ::res://asset/png/::1684410263
 ::res://asset/tileset/::1683808601
 ::res://scene/::1684407173
-::res://scene/0/::1684437621
-berggipfel.gd::GDScript::-1::1684410226::0::1::::<>MarginContainer<>::
-berggipfel.tscn::PackedScene::1121690717196129534::1684437621::0::1::::<><>::res://scene/0/berggipfel.gd
-felssturz.tscn::PackedScene::4038576559406776191::1684437621::0::1::::<><>::
-::res://scene/1/::1684437647
-felsen.tscn::PackedScene::7930788149662225223::1684437621::0::1::::<><>::
-stein.gd::GDScript::-1::1684433066::0::1::::<>Polygon2D<>::
-stein.tscn::PackedScene::6975642567601522447::1684437647::0::1::::<><>::res://scene/1/stein.gd
-::res://scene/game/::1684437621
-Game.gd::GDScript::-1::1684435563::0::1::::<>Node<>::
-Game.tscn::PackedScene::8246655032211948728::1684437621::0::1::::<><>::res://scene/game/Game.gd
-::res://script/::1684437621
-Classes_0.gd::GDScript::-1::1684437621::0::1::::<>Node<>::
-Classes_1.gd::GDScript::-1::1684432940::0::1::::<>Node<>::
-Global.gd::GDScript::-1::1684437576::0::1::::<>Node<>::
+::res://scene/0/::1684800396
+berggipfel.gd::GDScript::-1::1684604250::0::1::::<>MarginContainer<>::
+berggipfel.tscn::PackedScene::1121690717196129534::1684800048::0::1::::<><>::res://scene/0/berggipfel.gd
+felssturz.tscn::PackedScene::7839540313958120200::1684800396::0::1::::<><>::res://scene/0/berggipfel.gd
+gebirge.gd::GDScript::-1::1684799899::0::1::::<>MarginContainer<>::
+gebirge.tscn::PackedScene::4038576559406776191::1684800388::0::1::::<><>::res://scene/0/gebirge.gd
+::res://scene/1/::1684800049
+felsen.tscn::PackedScene::7930788149662225223::1684800049::0::1::::<><>::
+stein.gd::GDScript::-1::1684603687::0::1::::<>Polygon2D<>::
+stein.tscn::PackedScene::6975642567601522447::1684800049::0::1::::<><>::res://scene/1/stein.gd
+::res://scene/game/::1684800357
+Game.gd::GDScript::-1::1684800357::0::1::::<>Node<>::
+Game.tscn::PackedScene::8246655032211948728::1684800048::0::1::::<><>::res://scene/game/Game.gd
+::res://script/::1684800350
+Classes_0.gd::GDScript::-1::1684800321::0::1::::<>Node<>::
+Classes_1.gd::GDScript::-1::1684799945::0::1::::<>Node<>::
+Global.gd::GDScript::-1::1684800350::0::1::::<>Node<>::
